@@ -47,7 +47,7 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
- connectDB();
+ await connectDB();
 
 if (process.env.NODE_ENV !== "production") {
     app.listen(PORT, () => {
