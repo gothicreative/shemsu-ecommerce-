@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axiosInstance from "../lib/axios";
+import axios from "../lib/axios";
 
 import { toast } from "react-hot-toast";
 
@@ -12,7 +12,7 @@ export const useCartStore = create((set, get) => ({
 
 	getMyCoupon: async () => {
 		try {
-			const response = await axiosInstance.get("/coupons");
+			const response = await axios.get("/coupons");
 			set({ coupon: response.data });
 		} catch (error) {
 			console.error("Error fetching coupon:", error);
@@ -20,7 +20,7 @@ export const useCartStore = create((set, get) => ({
 	},
 	applyCoupon: async (code) => {
 		try {
-			const response = await axiosInstance.post("/coupons/validate", { code });
+			const response = await axios.post("/coupons/validate", { code });
 			set({ coupon: response.data, isCouponApplied: true });
 			get().calculateTotals();
 			toast.success("Coupon applied successfully");
@@ -36,7 +36,7 @@ export const useCartStore = create((set, get) => ({
 
 	getCartItems: async () => {
 		try {
-			const res = await axiosInstance.get("/cart");
+			const res = await axios.get("/cart");
 			set({ cart: res.data });
 			get().calculateTotals();
 		} catch (error) {
@@ -49,7 +49,7 @@ export const useCartStore = create((set, get) => ({
 	},
 	addToCart: async (product) => {
 		try {
-			await axiosInstance.post("/cart", { productId: product._id });
+			await axios.post("/cart", { productId: product._id });
 			toast.success("Product added to cart");
 
 			set((prevState) => {
@@ -67,7 +67,7 @@ export const useCartStore = create((set, get) => ({
 		}
 	},
 	removeFromCart: async (productId) => {
-		await axiosInstance.delete(`/cart`, { data: { productId } });
+		await axios.delete(`/cart`, { data: { productId } });
 		set((prevState) => ({ cart: prevState.cart.filter((item) => item._id !== productId) }));
 		get().calculateTotals();
 	},
@@ -77,7 +77,7 @@ export const useCartStore = create((set, get) => ({
 			return;
 		}
 
-		await axiosInstance.put(`/cart/${productId}`, { quantity });
+		await axios.put(`/cart/${productId}`, { quantity });
 		set((prevState) => ({
 			cart: prevState.cart.map((item) => (item._id === productId ? { ...item, quantity } : item)),
 		}));

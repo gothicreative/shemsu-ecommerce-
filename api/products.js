@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { Server } from 'http';
-import { getProductById, getAllProducts, getFeaturedProducts, createProduct, updateProduct, deleteProduct, getProductsByCategory, searchProducts } from '../../backend/controllers/product.controller.js';
+import { getProductById, getAllProducts, getFeaturedProducts, createProduct, updateProduct,
+deleteProduct, getProductsByCategory, searchProducts } from '../../backend/controllers/product.controller.js';
 
 // Create Express app for this route
 const app = express();

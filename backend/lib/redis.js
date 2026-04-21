@@ -4,31 +4,26 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Create Redis instance with proper Upstash configuration
+
+//import { createClient } from "redis"
+
 const redisClient = new Redis({
-  url: process.env.UPSTASH_REDIS_URL,
-  token: process.env.UPSTASH_REDIS_TOKEN,
+  url: process.env.UPSTASH_REDIS_URL || process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
 });
 
-// Wrap Upstash Redis methods to be compatible with ioredis API
 export const redis = {
-  get: async (key) => {
-    return await redisClient.get(key);
-  },
-  set: async (key, value, ...args) => {
-    // Handle ioredis-style set with expiry: set(key, value, 'EX', seconds)
-    if (args.length >= 2 && args[0] === 'EX') {
-      const expirySeconds = args[1];
-      await redisClient.set(key, value);
-      await redisClient.expire(key, expirySeconds);
-    } else {
-      await redisClient.set(key, value);
+  get: (key) => redisClient.get(key),
+  del: (key) => redisClient.del(key),
+  set: (key, value, ...args) => {
+    // If the 3rd argument is "EX", convert it to the Upstash object format
+    if (args[0] === "EX") {
+      return redisClient.set(key, value, { ex: args[1] });
     }
+    return redisClient.set(key, value);
   },
-  del: async (key) => {
-    return await redisClient.del(key);
-  },
-  // Add any other methods as needed
 };
+
 
 export default redis;
 

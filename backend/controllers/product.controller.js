@@ -16,8 +16,8 @@ export const getFeaturedProducts = async (req, res) => {
 	try {
 		let featuredProducts = await redis.get("featured_products");
 		if (featuredProducts) {
-			return res.json(JSON.parse(featuredProducts));
-		}
+				return res.json(typeof featuredProducts === "string" ? JSON.parse(featuredProducts) : featuredProducts);
+            		}
 
 		// if not in redis, fetch from mongodb
 		// .lean() is gonna return a plain javascript object instead of a mongodb document

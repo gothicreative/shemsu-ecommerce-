@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import cors from "cors";
 
+
+
 import authRoutes from "./routes/auth.route.js";
 import productRoutes from "./routes/product.route.js";
 import cartRoutes from "./routes/cart.route.js";
@@ -21,14 +23,20 @@ const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 // Configure CORS for development and production
-const corsOptions = {
-  origin: process.env.NODE_ENV === "production" ? true : "http://localhost:5173",
-  credentials: true, // Allow cookies to be sent with requests
-  optionsSuccessStatus: 200,
-  exposedHeaders: ["set-cookie"]
-};
 
-app.use(cors(corsOptions));
+
+const origin = process.env.NODE_ENV === "production" 
+    ? ["https://shemsu-collection.vercel.app", /\.vercel\.app$/] // Trust your domain + any vercel preview links
+    : "http://localhost:5173";
+
+app.use(cors({
+    origin: origin,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+app.use(cors({ origin, credentials: true }));
+
 app.use(express.json({ limit: "10mb" })); // allows you to parse the body of the request
 app.use(cookieParser());
 
@@ -39,7 +47,7 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
-connectDB(); 
+// connectDB(); 
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
@@ -48,12 +56,7 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-// 2. Wrap app.listen so it ONLY runs in local development
-if (process.env.NODE_ENV !== "production") {
-    app.listen(PORT, () => {
-        console.log("Server is running on http://localhost:" + PORT);
-    });
-}
-
-// 3. EXPORT THE APP (CRITICAL FOR VERCEL)
-export default app;
+app.listen(PORT, () => {
+	console.log("Server is running on http://localhost:" + PORT);
+	connectDB();
+});
