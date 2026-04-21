@@ -23,10 +23,8 @@ const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 // Configure CORS for development and production
-
-
-const origin = process.env.NODE_ENV === "production" 
-    ? ["https://shemsu-collection.vercel.app", /\.vercel\.app$/] // Trust your domain + any vercel preview links
+const origin = process.env.NODE_ENV === "production"
+    ? [process.env.CLIENT_URL, /\.vercel\.app$/] // Trust your domain from env + any vercel preview links
     : "http://localhost:5173";
 
 app.use(cors({
@@ -47,7 +45,7 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
- await connectDB();
+await connectDB();
 
 if (process.env.NODE_ENV !== "production") {
     app.listen(PORT, () => {
