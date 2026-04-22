@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { signup, login, logout, refreshToken } from '../../backend/controllers/auth.controller.js';
+import { signup, login, logout, refreshToken, getProfile } from '../../backend/controllers/auth.controller.js';
+import { protectRoute } from '../../backend/middleware/auth.middleware.js';
 import { connectDB } from '../../backend/lib/db.js';
 
 const app = express();
@@ -19,6 +20,7 @@ app.post('/signup', signup);
 app.post('/login', login);
 app.post('/logout', logout);
 app.post('/refresh-token', refreshToken);
+app.get('/profile', protectRoute, getProfile);
 
 // Export Vercel handler
 export default async function handler(req, res) {

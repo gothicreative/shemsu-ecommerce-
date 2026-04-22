@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { getCart, addToCart, removeFromCart, updateCartItem, clearCart } from '../../backend/controllers/cart.controller.js';
+import { getCartProducts, addToCart, removeAllFromCart, updateQuantity } from '../../backend/controllers/cart.controller.js';
+import { protectRoute } from '../../backend/middleware/auth.middleware.js';
 import { connectDB } from '../../backend/lib/db.js';
 
 const app = express();
@@ -13,11 +14,11 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
-app.get('/', getCart);
-app.post('/:productId', addToCart);
-app.put('/:productId', updateCartItem);
-app.delete('/:productId', removeFromCart);
-app.delete('/', clearCart);
+app.get('/', protectRoute, getCartProducts);
+app.post('/:productId', protectRoute, addToCart);
+app.put('/:productId', protectRoute, updateQuantity);
+app.delete('/:productId', protectRoute, removeAllFromCart);
+app.delete('/', protectRoute, removeAllFromCart);
 
 // Export Vercel handler
 export default async function handler(req, res) {
