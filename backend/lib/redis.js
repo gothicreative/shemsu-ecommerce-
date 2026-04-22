@@ -1,7 +1,9 @@
 import { Redis } from "@upstash/redis";
-import dotenv from "dotenv";
 
-dotenv.config();
+// Only load dotenv in development, not in Vercel serverless functions
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  import('dotenv').then(dotenv => dotenv.config());
+}
 
 // Create Redis instance with proper Upstash configuration
 
