@@ -1,32 +1,13 @@
 {
-  "version": 2,"rewrites": [
-  {
-    "source": "/api/auth/(.*)",
-    "destination": "/api/auth"
-  },
-  {
-    "source": "/api/products/(.*)",
-    "destination": "/api/products"
-  },
-  {
-    "source": "/api/cart/(.*)",
-    "destination": "/api/cart"
-  },
-  {
-    "source": "/api/coupons/(.*)",
-    "destination": "/api/coupons"
-  },
-  {
-    "source": "/api/payments/(.*)",
-    "destination": "/api/payments"
-  },
-  {
-    "source": "/api/analytics/(.*)",
-    "destination": "/api/analytics"
-  },
-  {
-    "source": "/(.*)",
-    "destination": "/index.html"
-  }
-]
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/dist/index.html"
+    }
+  ]
 }
