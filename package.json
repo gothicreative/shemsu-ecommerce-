@@ -6,8 +6,8 @@
 	"scripts": {
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
-	"build": "npm install --prefix frontend && cd frontend && npx vite build",
-	"vercel-build": "npm install --prefix frontend && cd frontend && npx vite build",
+	"build": "npm install --prefix frontend && npm run build --prefix frontend -- --emptyOutDir",
+	"vercel-build": "cd frontend && npm ci && npm run build",
     "preview": "npm run build && npm run start"
 	},
 	"keywords": [],
