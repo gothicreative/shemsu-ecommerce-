@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { createPaymentIntent } from '../../backend/controllers/payment.controller.js';
+import { connectDB } from '../../backend/lib/db.js';
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.post('/create-intent', createPaymentIntent);
 
 // Export Vercel handler
 export default async function handler(req, res) {
+  // Ensure database is connected
+  await connectDB();
+  
   return new Promise((resolve) => {
     app(req, res, () => {
       resolve();

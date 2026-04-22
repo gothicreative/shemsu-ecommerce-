@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { getProductById, getAllProducts, getFeaturedProducts, createProduct, updateProduct, deleteProduct, getProductsByCategory, searchProducts } from '../../backend/controllers/product.controller.js';
+import { connectDB } from '../../backend/lib/db.js';
 
 const app = express();
 
@@ -24,6 +25,9 @@ app.delete('/:id', deleteProduct);
 
 // Export Vercel handler
 export default async function handler(req, res) {
+  // Ensure database is connected
+  await connectDB();
+  
   return new Promise((resolve) => {
     app(req, res, () => {
       resolve();
