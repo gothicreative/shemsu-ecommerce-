@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import { getCartProducts, addToCart, removeAllFromCart, updateQuantity } from '../../backend/controllers/cart.controller.js';
-import { protectRoute } from '../../backend/middleware/auth.middleware.js';
-import { connectDB } from '../../backend/lib/db.js';
+import { getCartProducts, addToCart, removeAllFromCart, updateQuantity } from '../backend/controllers/cart.controller.js';
+import { protectRoute } from '../backend/middleware/auth.middleware.js';
+import { connectDB } from '../backend/lib/db.js';
 
 const app = express();
 

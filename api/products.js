@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { getProductById, getAllProducts, getFeaturedProducts, getRandomProducts, createProduct, updateProduct, deleteProduct, getProductsByCategory, searchProducts, toggleFeaturedProduct } from '../../backend/controllers/product.controller.js';
-import { protectRoute, adminRoute } from '../../backend/middleware/auth.middleware.js';
-import { connectDB } from '../../backend/lib/db.js';
+import { protectRoute, adminRoute } from '../backend/middleware/auth.middleware.js';
+import { connectDB } from '../backend/lib/db.js';
 
 const app = express();
 

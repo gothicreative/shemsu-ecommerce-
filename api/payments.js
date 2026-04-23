@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { createPaymentIntent } from '../../backend/controllers/payment.controller.js';
-import { connectDB } from '../../backend/lib/db.js';
+import { createPaymentIntent } from '../backend/controllers/payment.controller.js';
+import { connectDB } from '../backend/lib/db.js';
 
 const app = express();
 

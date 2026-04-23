@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { signup, login, logout, refreshToken, getProfile } from '../../backend/controllers/auth.controller.js';
-import { protectRoute } from '../../backend/middleware/auth.middleware.js';
-import { connectDB } from '../../backend/lib/db.js';
+import { signup, login, logout, refreshToken, getProfile } from '../backend/controllers/auth.controller.js';
+import { protectRoute } from '../backend/middleware/auth.middleware.js';
+import { connectDB } from '../backend/lib/db.js';
 
 const app = express();
 

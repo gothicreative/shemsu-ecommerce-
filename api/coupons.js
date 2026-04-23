@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { getCoupon, validateCoupon } from '../../backend/controllers/coupon.controller.js';
-import { connectDB } from '../../backend/lib/db.js';
+import { getCoupon, validateCoupon } from '../backend/controllers/coupon.controller.js';
+import { connectDB } from '../backend/lib/db.js';
 
 const app = express();
 

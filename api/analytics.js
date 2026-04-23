@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { getAnalyticsData, getDailySalesData } from '../../backend/controllers/analytics.controller.js';
-import { connectDB } from '../../backend/lib/db.js';
+import { getAnalyticsData, getDailySalesData } from '../backend/controllers/analytics.controller.js';
+import { connectDB } from '../backend/lib/db.js';
 
 const app = express();
 
