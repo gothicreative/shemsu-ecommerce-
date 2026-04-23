@@ -1,72 +1,13 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "frontend/dist" }
+      "source": "/api/(.*)",
+      "destination": "/backend/server.js"
     },
     {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/auth(.*)",
-      "dest": "/api/auth.js"
-    },
-    {
-      "src": "/api/products(.*)",
-      "dest": "/api/products.js"
-    },
-    {
-      "src": "/api/cart(.*)",
-      "dest": "/api/cart.js"
-    },
-    {
-      "src": "/api/coupons(.*)",
-      "dest": "/api/coupons.js"
-    },
-    {
-      "src": "/api/payments(.*)",
-      "dest": "/api/payments.js"
-    },
-    {
-      "src": "/api/analytics(.*)",
-      "dest": "/api/analytics.js"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*)\\.js",
-      "dest": "/$1.js"
-    },
-    {
-      "src": "/(.*)\\.css",
-      "dest": "/$1.css"
-    },
-    {
-      "src": "/(.*)\\.png",
-      "dest": "/$1.png"
-    },
-    {
-      "src": "/(.*)\\.jpg",
-      "dest": "/$1.jpg"
-    },
-    {
-      "src": "/(.*)\\.svg",
-      "dest": "/$1.svg"
-    },
-    {
-      "src": "/favicon\\.ico",
-      "dest": "/favicon.ico"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/frontend/dist/index.html"
     }
   ]
 }
