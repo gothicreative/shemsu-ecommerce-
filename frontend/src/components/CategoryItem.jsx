@@ -9,13 +9,10 @@ const CategoryItem = ({ category }) => {
 	const getImageSrc = () => {
 		if (imageError) {
 			const oldImageMap = {
-				'/jeans.jpg': '/jeansOld.jpg',
-				'/tshirts.jpg': '/tshirtsOld.jpg',
-				'/shoes.jpg': '/shoesOld.jpg',
-				'/glasse.jpg': '/glassesOld.png',
-				'/jackets.jpg': '/jacketsOld.jpg',
-				'/suits.jpg': '/suitsOld.jpg',
-				'/bags.jpg': '/bagsOld.jpg'
+				'/blocks.jpg': '/blocksOld.jpg',
+				'/plastics.jpg': '/plastic.jpg',
+				'/steels.jpg': '/steel.jpg',
+				'/woods.jpg': '/wood.jpg'
 			};
 			return oldImageMap[category.imageUrl] || category.imageUrl;
 		}

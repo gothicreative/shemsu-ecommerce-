@@ -24,13 +24,13 @@ const __dirname = path.resolve();
 
 // Configure CORS for development and production
 const origin = process.env.NODE_ENV === "production"
-    ? [process.env.CLIENT_URL, /\.vercel\.app$/] // Trust your domain from env + any vercel preview links
+    ? [process.env.CLIENT_URL, /\.vercel\.app$/] 
     : "http://localhost:5173";
 
 app.use(cors({
     origin: origin,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true, // 👈 CRITICAL: This must be here to allow cookies/headers
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 

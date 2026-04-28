@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => {
 							whileHover={{ scale: 1.1 }}
 							transition={{ duration: 0.2 }}
 						>
-							${product.price}
+							Etb {product.price.toFixed(2)}
 						</motion.span>
 					</p>
 				</div>

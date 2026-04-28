@@ -6,13 +6,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const categories = [
-	{ href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
-	{ href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
-	{ href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
-	{ href: "/glasses", name: "Glasses", imageUrl: "/glasse.jpg" },
-	{ href: "/jackets", name: "Jackets", imageUrl: "/jackets.jpg" },
-	{ href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
-	{ href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
+	{ href: "/blocks", name: "Blocks", imageUrl: "/boocks.jpg" },
+	{ href: "/plastics", name: "Plastics", imageUrl: "/plastic.jpg" },
+	{ href: "/steels", name: "Steels", imageUrl: "/steel.jpg" },
+	{ href: "/woods", name: "Wood", imageUrl: "/wood.jpg" },
+	
 ];
 
 const HomePage = () => {
@@ -25,18 +23,18 @@ const HomePage = () => {
 	return (
 		<div className='relative min-h-screen text-white overflow-hidden'>
 			{/* Hero Section with Background Image */}
-			<div className='relative h-[70vh] flex items-center justify-center'>
-				<div className='absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/70 z-10'></div>
-				<div className='absolute inset-0 bg-[url("/cartimg.jpg")] bg-cover bg-center bg-no-repeat opacity-30'></div>
+			<div className='relative h-[80vh] flex items-center justify-center'>
+				<div className='absolute inset-0 bg-gradient-to-r from-gray-900/70 to-gray-900/40 z-10'></div>
+				<div className='absolute inset-0 bg-[url("/building_materials.jpeg")] bg-cover bg-center bg-no-repeat opacity-40'></div>
 				
-				<div className='relative z-20 text-center px-4 max-w-4xl'>
+				<div className='relative z-20 text-center px-6 py-12 max-w-7xl mx-auto'>
 					<motion.h1 
-						className='text-4xl md:text-7xl font-bold text-emerald-400 mb-6'
+						className='text-4xl sm:text-5xl font-bold text-emerald-400 mb-6'
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
 					>
-						በሱቃቸን ዞር ዞር ይበሉ
+						Premium Supplies for Projects That Endure.
 					</motion.h1>
 					<motion.p 
 						className='text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto'
@@ -44,7 +42,7 @@ const HomePage = () => {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8, delay: 0.2 }}
 					>
-						Discover the latest trends in eco-friendly fashion with premium quality and sustainable materials
+						Discover the latest in building materials with premium quality and sustainable materials.
 					</motion.p>
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
