@@ -120,7 +120,7 @@ const axiosInstance = axios.create({
 
 ---
 
-## 🆘 Troubleshooting
+## 🆘 Troubleshooting 
 
 ### Products not loading?
 - Check MongoDB connection string in Vercel env vars
